@@ -12,6 +12,7 @@ export const metadata: Metadata = {
   title: "Evently", 
   description: "Evently is a platform for managing events.",
   icons: {
+    // icon: "/assets/images/logo.svg",
     icon: "/assets/icons/favicon.ico",
   },
 };

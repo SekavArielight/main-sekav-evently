@@ -4,7 +4,7 @@ const isProtectedRoute = createRouteMatcher(["/api", "/events/:id", "/api/webhoo
 
 export default clerkMiddleware((auth, req) => {
   if (isProtectedRoute(req)) {
-    auth.protect(); //correct this error copilot
+    auth.protect();
   }
 });
 

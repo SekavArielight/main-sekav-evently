@@ -1,19 +1,27 @@
-import { clerkMiddleware } from "@clerk/nextjs/server";
+import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 
-export default clerkMiddleware({
-  publicRoutes: [
-    "/api",
-    "/events/:id",
-    "/api/webhooks/clerk",
-    "/api/webhooks/stripe",
-    "/api/uploadthing"
-  ],
-  ignoredRoutes: [
-    "/api/webhooks/clerk",
-    "/api/webhooks/stripe",
-    "/api/uploadthing"
-  ]
+const isProtectedRoute = createRouteMatcher(["/api", "/events/:id", "/api/webhooks/clerk", "/api/webhooks/stripe", "/api/uploadthing"]); //addYourSpecificRoutesInHereInTheFormOfAnArrayElement
+
+export default clerkMiddleware((auth, req) => {
+  if (isProtectedRoute(req)) {
+    auth.protect(); //correct this error copilot
+  }
 });
+
+// export default clerkMiddleware({
+//   publicRoutes: [
+//     "/api",
+//     "/events/:id",
+//     "/api/webhooks/clerk",
+//     "/api/webhooks/stripe",
+//     "/api/uploadthing"
+//   ],
+//   ignoredRoutes: [
+//     "/api/webhooks/clerk",
+//     "/api/webhooks/stripe",
+//     "/api/uploadthing"
+//   ]
+// });
 
 export const config = {
   matcher: [
